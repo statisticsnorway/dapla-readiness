@@ -28,6 +28,27 @@ steps:
               url: https://nexus.prod-bip-ci.ssb.no/repository/maven-releases/
               layout: default
 
+  - name: build
+    image: maven:3-jdk-11
+    commands:
+      - mvn compile -P ssb-bip -DskipTests=true -Dmaven.javadoc.skip=true --batch-mode --global-settings settings.xml
+    environment:
+      MAVEN_HOME: /drone/src/.m2
+      M2_HOME: /drone/src/.m2
+    depends_on:
+      - authenticate
+      - restore-cache
+
+  - name: test
+    image: maven:3-jdk-11
+    commands:
+      - mvn verify test -P ssb-bip,coverage --batch-mode --global-settings settings.xml
+    environment:
+      MAVEN_HOME: /drone/src/.m2
+      M2_HOME: /drone/src/.m2
+    depends_on:
+      - build
+
   - name: publish-maven
     image: maven:3-jdk-11-slim
     commands:
