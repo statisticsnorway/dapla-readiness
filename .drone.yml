@@ -31,10 +31,7 @@ steps:
   - name: build
     image: maven:3-jdk-11
     commands:
-      - mvn compile -P ssb-bip -DskipTests=true -Dmaven.javadoc.skip=true --batch-mode --global-settings settings.xml
-    environment:
-      MAVEN_HOME: /drone/src/.m2
-      M2_HOME: /drone/src/.m2
+      - mvn compile -P ssb-bip -DskipTests=true -Dmaven.repo.local=/drone/src/.m2/repository --batch-mode --global-settings settings.xml
     depends_on:
       - authenticate
       - restore-cache
@@ -42,10 +39,7 @@ steps:
   - name: test
     image: maven:3-jdk-11
     commands:
-      - mvn verify test -P ssb-bip,coverage --batch-mode --global-settings settings.xml
-    environment:
-      MAVEN_HOME: /drone/src/.m2
-      M2_HOME: /drone/src/.m2
+      - mvn verify test -P ssb-bip,coverage -Dmaven.repo.local=/drone/src/.m2/repository --batch-mode --global-settings settings.xml
     depends_on:
       - build
 
