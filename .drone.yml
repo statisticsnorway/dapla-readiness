@@ -52,18 +52,14 @@ steps:
   - name: publish-maven
     image: maven:3-jdk-11-slim
     commands:
-      - mvn clean deploy -P ssb-bip -Dmaven.repo.local=/drone/src/.m2/repository --batch-mode --global-settings settings.xml
+      - mvn clean deploy -P ssb-bip -Dmaven.repo.local=/drone/src/.m2/repository -DskipTests=true --batch-mode --global-settings settings.xml
+    when:
+      ref:
+        - refs/tags/*
     environment:
       MAVEN_OPTS: -Djdk.tls.client.protocols="TLSv1.2"
-    when:
-      event:
-        exclude: pull_request
-      branch:
-        - master
-        - develop
     depends_on:
-      - authenticate
-      - restore-cache
+      - test
 
   # Rebuild cache if it has changed with this build
   - name: rebuild-cache
