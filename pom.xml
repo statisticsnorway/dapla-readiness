@@ -8,6 +8,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>${project.artifactId}</name>
 
+    <scm>
+        <connection>scm:git:git://github.com/statisticsnorway/dapla-readiness.git</connection>
+        <developerConnection>scm:git:git@github.com:statisticsnorway/dapla-readiness.git</developerConnection>
+        <url>https://github.com/statisticsnorway/dapla-readiness</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
         <jdk.version>11</jdk.version>
         <maven.compiler.release>${jdk.version}</maven.compiler.release>
