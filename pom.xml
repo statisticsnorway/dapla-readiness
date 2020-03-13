@@ -3,14 +3,14 @@
 
     <groupId>no.ssb.dapla.readiness</groupId>
     <artifactId>dapla-readiness</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>${project.artifactId}</name>
 
     <scm>
         <connection>scm:git:git://github.com/statisticsnorway/dapla-readiness.git</connection>
         <developerConnection>scm:git:git@github.com:statisticsnorway/dapla-readiness.git</developerConnection>
         <url>https://github.com/statisticsnorway/dapla-readiness</url>
-        <tag>dapla-readiness-1.0.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
